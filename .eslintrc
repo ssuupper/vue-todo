@@ -1,0 +1,10 @@
+{
+  "extends": "standard", // 使用standard规则
+  "plugins": [
+    "html" // .vue文件里面类似于html不是js，eslint默认无法识别.vue中的js代码
+  ],
+  "parser": "babel-eslint", // 代码基于babel进行处理，默认配合eslint会有问题
+  "rules": {
+    "no-new": "off" // eslint默认不允许使用new
+  }
+}
