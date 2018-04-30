@@ -5,6 +5,7 @@
     <!--<todo></todo>-->
     <!--<p>{{count}}</p>-->
     <p>{{fullName}} {{count}}</p>
+    <!--<p>{{textA}} {{textPlus}}</p>-->
     <router-link to="/app">app</router-link>
     <!--<router-link :to="{name: 'app'}">app</router-link>-->
     <router-link to="/login">login</router-link>
@@ -51,23 +52,35 @@ export default {
       num: 5,
       time: 2000
     })
+    // this['a/updateText'](123) // 分模块命名空间调用
+    // this['a/add']()
   },
   methods: {
+    // ...mapActions(['updateCountAsync', 'a/add']),
     ...mapActions(['updateCountAsync']),
+    // ...mapMutations(['updateCount', 'a/updateText'])
     ...mapMutations(['updateCount'])
   },
   computed: {
-    ...mapState(['count']),
+    // textA () {
+    //   return this.$store.state.a.text
+    // },
+    // ...mapState(['count']),
     // ...mapState({
     //   count: 'count'
     // }),
-    // ...mapState({
-    //   count: (state) => state.count
-    // }),
+    ...mapState({
+      count: (state) => state.count
+      // textA: state => state.a.text
+    }),
     // count () {
     //   return this.$store.state.count
     // },
-    ...mapGetters(['fullName'])
+    // ...mapGetters(['fullName', 'a/textPlus'])
+    ...mapGetters({
+      'fullName': 'fullName'
+      // 'textPlus': 'a/textPlus'
+    })
     // fullName () {
     //   return this.$store.getters.fullName
     // }

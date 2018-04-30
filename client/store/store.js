@@ -33,5 +33,35 @@ export default () => {
     mutations,
     getters,
     actions
+    // modules: { // vuex模块化
+    //   a: {
+    //     namespaced: true,
+    //     state: {
+    //       text: 1
+    //     },
+    //     mutations: {
+    //       updateText (state, text) { // state是a模块单独的state
+    //         console.log('a.state', state)
+    //         state.text = text
+    //       }
+    //     },
+    //     getters: {
+    //       textPlus (state, getters, rootState) {
+    //         return state.text + 1
+    //       }
+    //     },
+    //     actions: {
+    //       add ({state, commit, rootState}) {
+    //         // commit('updateText', rootState.count)
+    //         commit('updateCount', rootState.count, {root: true})
+    //       }
+    //     }
+    //   },
+    //   b: {
+    //     state: {
+    //       text: 2
+    //     }
+    //   }
+    // }
   })
 }
