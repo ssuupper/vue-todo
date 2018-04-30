@@ -27,7 +27,7 @@ import actions from './actions/actions'
 const isDev = process.env.NODE_ENV === 'development'
 
 export default () => {
-  return new Vuex.Store({
+  const store = new Vuex.Store({
     strict: isDev, // 启用严格模式，无法在mutation之外修改数据，不要在正式环境使用
     state: defaultState,
     mutations,
@@ -64,4 +64,27 @@ export default () => {
     //   }
     // }
   })
+
+  // 加入webpack热更替功能
+  if (module.hot) {
+    module.hot.accept([
+      './state/state',
+      './mutations/mutations',
+      './actions/actions',
+      './getters/getters'
+    ], () => {
+      const newState = require('./state/state').default
+      const newMutations = require('./mutations/mutations').default
+      const newActions = require('./actions/actions').default
+      const newGetters = require('./getters/getters').default
+
+      store.hotUpdate({
+        state: newState,
+        mutations: newMutations,
+        getters: newGetters,
+        actions: newActions
+      })
+    })
+  }
+  return store
 }
