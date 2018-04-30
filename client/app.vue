@@ -2,23 +2,34 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
-    <todo></todo>
+    <!--<todo></todo>-->
+    <router-link to="/app">app</router-link>
+    <!--<router-link :to="{name: 'app'}">app</router-link>-->
+    <router-link to="/login">login</router-link>
+    <!--<router-link to="/login/exact">login exact</router-link>-->
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
     <Footer></Footer>
+    <!--<router-view name="a"></router-view>-->
   </div>
 </template>
 
 <script>
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
-import Todo from './views/todo/todo.vue'
+// import Todo from './views/todo/todo.vue'
 
 // console.log(Header.__docs) // 打印自定义loader内容
 
 export default {
   components: {
     Header,
-    Footer,
-    Todo
+    Footer
+    // Todo
+  },
+  mounted () {
+    console.log(this.$route)
   }
 }
 </script>
